@@ -1,0 +1,105 @@
+<?php 
+include("connection.php");
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP crud operation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <form action="" method="POST">
+    <div class="title">Update form</div>
+    <div class="form">
+        <div class="input_field">
+            <label for="">First Name</label>
+            <input type="text" name="fname" id="" class="input" required >
+        </div>
+        <div class="input_field">
+            <label for="">Last Name</label>
+            <input type="text" name="lname" id="" class="input" required>
+        </div>
+        <div class="input_field">
+            <label for="">Password</label>
+            <input type="password" name="password" id="" class="input" required >
+        </div>
+        <div class="input_field">
+            <label for="">Confirm Password</label>
+            <input type="password" name="conpassword" id="" class="input" required>
+        </div>
+        <div class="input_field">
+            <label for="">Gender</label>
+            <div class="custom_select">
+            <select name="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+</div>
+        </div>
+        <div class="input_field">
+            <label for="">Email Address</label>
+            <input type="text" name="email" id="" class="input" required>
+        </div>
+        <div class="input_field">
+            <label for="Phone">Phone Number</label>
+            <input type="number" name="phone" id="" class="input" required>
+        </div>
+        <div class="input_field">
+            <label for="Address">Address</label>
+<textarea name="address" id="" cols="30" rows="10" class="textarea" required></textarea>
+        </div>
+      
+
+        <div class="input_field">
+            <input type="submit" name="register" value="Update" class="btn" >
+        </div>
+    </div>
+</form>
+</div>
+
+</body>
+</html>
+
+
+
+<?php
+  if(isset($_POST['register']))
+  {
+   $fname = $_POST['fname'];
+   $lname = $_POST['lname'];
+   $pwd = $_POST['password'];
+   $cpwd = $_POST['conpassword'];
+   $gender = $_POST['gender'];
+   $email = $_POST['email'];
+   $phone = $_POST['phone'];
+   $address = $_POST['address'];
+
+   if($fname != "" && $lname != "" && $pwd != "" && $cpwd != "" && $gender != "" && $email != "" && $address != "")
+   {
+    
+   $query = "INSERT INTO form (fname, lname, password,cpassword, gender, email, phone, address) 
+                  VALUES('$fname', '$lname', '$pwd','$cpwd','$gender', '$email', '$phone', '$address')";
+   $result = mysqli_query($connection,$query);
+   if($result)
+   {
+    echo "Data inserted into Database";
+   }
+   else{
+    echo "failed";
+   }
+   }
+   else{
+    echo "Please fill the empty fields";
+   }
+
+
+
+  }
+
+
+
+?>
